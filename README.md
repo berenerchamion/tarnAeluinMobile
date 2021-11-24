@@ -1,16 +1,9 @@
-# tarn_aeluin_mobile
+# Tarn Aeluin Mobile
 
-A new Flutter project.
+This app will be a viewing app for my Wordpress blog at https://tarnaeluin.houseofbeor.net
+
+Sounds boring, right? Well this is just a way for me to play around with the Wordpress API and how to get content flowing into an app in a nice way.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+As I build out the app, I will update this section.

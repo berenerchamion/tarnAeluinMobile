@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/post_summary.dart';
 
 class PostsListScreen extends StatefulWidget {
   const PostsListScreen({Key? key}) : super(key: key);
@@ -16,11 +17,11 @@ class _PostsListScreenState extends State<PostsListScreen> {
         title: const Text('Tarn Aeluin Posts'),
       ),
       body: Column(
-        children: const <Widget>[
-          Text('This is the first post'),
-          Text('This is the second post'),
-          Text('This is the third post'),
-          Text('This is the fourth post'),
+        children: <Widget>[
+          PostSummary(1, 'This is the first post', DateTime.now()),
+          PostSummary(2, 'This is the second post', DateTime.now()),
+          PostSummary(3, 'This is the third post', DateTime.now()),
+          PostSummary(4, 'This is the fourth post', DateTime.now()),
         ],
       ),
     );

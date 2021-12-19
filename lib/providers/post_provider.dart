@@ -16,4 +16,9 @@ class Post with ChangeNotifier {
     required this.imageUrl,
     isFavorite = false,
   });
+
+  void _setFavoriteStatus(bool newValue) {
+    isFavorite = newValue;
+    notifyListeners();
+  }
 }

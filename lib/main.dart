@@ -1,10 +1,24 @@
 import 'package:flutter/material.dart';
-import './screens/posts_list_screen.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+
+import './providers/posts_provider.dart';
+import './providers/post_provider.dart';
+import './screens/posts_list_screen.dart';
 
 void main() async {
   await dotenv.load(fileName: '.env');
-  runApp(const MyHomePage());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProxyProvider(
+          create: (BuildContext ctx) => Posts([]),
+          update: (ctx, _, previousPosts) => Posts([]),
+        ),
+      ],
+      child: const MyHomePage(),
+    ),
+  );
 }
 
 class MyHomePage extends StatefulWidget {
@@ -14,8 +28,7 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage>{
-
+class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     final ThemeData ourTheme = configureTheme(context);

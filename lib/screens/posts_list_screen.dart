@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/posts_provider.dart';
 import '../widgets/post_summary.dart';
 
 class PostsListScreen extends StatefulWidget {
@@ -9,6 +12,19 @@ class PostsListScreen extends StatefulWidget {
 }
 
 class _PostsListScreenState extends State<PostsListScreen> {
+  bool _isLoading = false;
+
+  @override
+  void initState() {
+    _isLoading = true;
+    Provider.of<Posts>(context, listen:false).fetchPosts().then((_) {
+      setState((){
+        _isLoading = false;
+      });
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

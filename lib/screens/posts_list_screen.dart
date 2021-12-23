@@ -17,8 +17,8 @@ class _PostsListScreenState extends State<PostsListScreen> {
   @override
   void initState() {
     _isLoading = true;
-    Provider.of<Posts>(context, listen:false).fetchPosts().then((_) {
-      setState((){
+    Provider.of<Posts>(context, listen: false).fetchPosts().then((_) {
+      setState(() {
         _isLoading = false;
       });
     });
@@ -27,20 +27,17 @@ class _PostsListScreenState extends State<PostsListScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final postsData = Provider.of<Posts>(context);
+    final posts = postsData.posts;
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: const Text('Tarn Aeluin Posts'),
       ),
-      body: Column(
-        children: <Widget>[
-          PostSummary(1, 'This is the first post', DateTime.now()),
-          PostSummary(2, 'This is the second post', DateTime.now()),
-          PostSummary(3, 'This is the third post', DateTime.now()),
-          PostSummary(4, 'This is the fourth post', DateTime.now()),
-        ],
+      body: Container(
+        child: Text("Here I am... ${posts.length}"),
       ),
     );
   }
 }
-

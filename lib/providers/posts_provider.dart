@@ -23,17 +23,18 @@ class Posts with ChangeNotifier {
       final response = await get(uriPosts);
       final extractedData = json.decode(response.body);
       final List<Post> loadedPosts = [];
-
       for (int i = 0; i < extractedData.length; i++) {
         loadedPosts.add(Post(
           id: extractedData[i]['id'],
           title: extractedData[i]['title']['rendered'],
+          excerpt: extractedData[i]['excerpt']['rendered'],
           created: DateTime.parse(extractedData[i]['date']),
           updated: DateTime.parse(extractedData[i]['modified']),
-          imageUrl: 'This is my image url',
+          imageUrl: extractedData[i]['jetpack_featured_media_url'],
         ));
       }
-
+      _posts = loadedPosts;
+      notifyListeners();
     } catch (error) {
       print('Post fetch error from Tarn Aeluin');
       rethrow;

@@ -35,9 +35,19 @@ class _PostsListScreenState extends State<PostsListScreen> {
         centerTitle: true,
         title: const Text('Tarn Aeluin Posts'),
       ),
-      body: Container(
-        child: Text("Here I am... ${posts.length}"),
-      ),
+      body: _isLoading
+          ? Center(
+              child: CircularProgressIndicator(),
+            )
+          : ListView.builder(
+              padding: const EdgeInsets.all(8),
+              itemCount: posts.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Container(
+                  height: 50,
+                  child: Text('My ID is: ${posts[index].id}'),
+                );
+              }),
     );
   }
 }

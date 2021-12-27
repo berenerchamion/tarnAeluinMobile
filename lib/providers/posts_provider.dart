@@ -24,10 +24,15 @@ class Posts with ChangeNotifier {
       final extractedData = json.decode(response.body);
       final List<Post> loadedPosts = [];
       for (int i = 0; i < extractedData.length; i++) {
+        String t = extractedData[i]['yoast_head_json']['title'];
+        int cut = t.indexOf('•');
+        if (cut != -1) {
+          t = t.substring(0, (cut -1));
+        }
         loadedPosts.add(Post(
           id: extractedData[i]['id'],
-          title: extractedData[i]['title']['rendered'],
-          excerpt: extractedData[i]['excerpt']['rendered'],
+          title: t,
+          excerpt: extractedData[i]['yoast_head_json']['description'],
           created: DateTime.parse(extractedData[i]['date']),
           updated: DateTime.parse(extractedData[i]['modified']),
           imageUrl: extractedData[i]['jetpack_featured_media_url'],

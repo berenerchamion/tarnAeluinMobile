@@ -1,40 +1,78 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
-import '../providers/post_provider.dart';
 
 class PostSummary extends StatelessWidget {
   final int id;
   final String title;
+  final String excerpt;
   final DateTime date;
   final String imageUrl;
 
-  const PostSummary(this.id, this.title, this.date, this.imageUrl, {Key? key})
+  const PostSummary(this.id, this.title, this.excerpt, this.date, this.imageUrl,
+      {Key? key})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    //print(excerpt);
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Expanded(
-          child: Hero(
-              tag: id,
-              child: FadeInImage(
-                placeholder:
-                AssetImage('assets/images/ta-placeholder-master.png'),
-                image: NetworkImage(
-                  imageUrl,
+          flex: 5,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(5),
+            clipBehavior: Clip.antiAlias,
+            child: GridTile(
+              child: Container(
+                padding: EdgeInsets.all(5.0),
+                decoration: BoxDecoration(
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Colors.black26,
+                      blurRadius: 3.0,
+                      spreadRadius: 4.0,
+                    ),
+                  ],
                 ),
-                fit: BoxFit.cover,
-              )
+                child: Hero(
+                    tag: id,
+                    child: FadeInImage(
+                      placeholder:
+                          AssetImage('assets/images/ta-placeholder-master.png'),
+                      image: NetworkImage(
+                        imageUrl,
+                      ),
+                      fit: BoxFit.cover,
+                      height: 150,
+                      width: 150,
+                    )),
+              ),
+            ),
+          ),
+        ),
+        Expanded(
+          flex: 8,
+          child: Container(
+            padding: EdgeInsets.only(
+              left: 5,
+              right: 5,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(title),
+                SizedBox(
+                  height: 5,
+                ),
+                Text('${excerpt.substring(0, 100)}...'),
+              ],
+            ),
           ),
         ),
         Expanded(
           flex: 3,
-          child: Text(title),
-        ),
-        Expanded(
-          child: Text(DateFormat('MM/dd/yyyy').format(date)),
+          child: Text(DateFormat('MM/dd/yy').format(date)),
         ),
       ],
     );

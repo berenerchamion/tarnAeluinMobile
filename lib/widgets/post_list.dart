@@ -21,6 +21,7 @@ class PostList extends StatelessWidget {
               return PostSummary(
                 posts[index].id,
                 posts[index].title,
+                posts[index].excerpt,
                 posts[index].created,
                 posts[index].imageUrl,
               );

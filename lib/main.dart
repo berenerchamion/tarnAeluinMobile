@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import './providers/posts_provider.dart';
-import './providers/post_provider.dart';
 import './screens/posts_list_screen.dart';
 
 void main() async {
@@ -11,9 +10,8 @@ void main() async {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProxyProvider(
+        ChangeNotifierProvider(
           create: (BuildContext ctx) => Posts([]),
-          update: (ctx, _, previousPosts) => Posts([]),
         ),
       ],
       child: const MyHomePage(),

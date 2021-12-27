@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../providers/posts_provider.dart';
 import '../widgets/post_summary.dart';
+import '../widgets/post_list.dart';
 
 class PostsListScreen extends StatefulWidget {
   const PostsListScreen({Key? key}) : super(key: key);
@@ -17,7 +18,7 @@ class _PostsListScreenState extends State<PostsListScreen> {
   @override
   void initState() {
     _isLoading = true;
-    Provider.of<Posts>(context, listen: false).fetchPosts().then((_) {
+    Provider.of<Posts>(context, listen:false).fetchPosts().then((_) {
       setState(() {
         _isLoading = false;
       });
@@ -39,15 +40,7 @@ class _PostsListScreenState extends State<PostsListScreen> {
           ? Center(
               child: CircularProgressIndicator(),
             )
-          : ListView.builder(
-              padding: const EdgeInsets.all(8),
-              itemCount: posts.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Container(
-                  height: 50,
-                  child: Text('My ID is: ${posts[index].id}'),
-                );
-              }),
+          : PostList(),
     );
   }
 }

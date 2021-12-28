@@ -4,6 +4,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import './providers/posts_provider.dart';
 import './screens/posts_list_screen.dart';
+import './screens/post_details_screen.dart';
 
 void main() async {
   await dotenv.load(fileName: '.env');
@@ -34,6 +35,9 @@ class _MyHomePageState extends State<MyHomePage> {
       title: 'Tarn Aeluin Posts',
       theme: ourTheme,
       home: PostsListScreen(),
+      routes: {
+        PostDetailsScreen.routeName: (ctx) => PostDetailsScreen(),
+      },
     );
   }
 

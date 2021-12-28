@@ -21,7 +21,7 @@ class PostSummary extends StatelessWidget {
       ),
       child:  GestureDetector(
         onTap: () {
-          Navigator.of(context).pushNamed('/post-details');
+          Navigator.of(context).pushNamed('/post-details', arguments: id);
       },
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,

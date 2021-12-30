@@ -1,28 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class PostSummary extends StatelessWidget {
-  final int id;
-  final String title;
-  final String excerpt;
-  final DateTime date;
-  final String imageUrl;
+import '../providers/post_provider.dart';
 
-  const PostSummary(this.id, this.title, this.excerpt, this.date, this.imageUrl,
+class PostSummary extends StatelessWidget {
+  final Post post;
+
+  const PostSummary(this.post,
       {Key? key})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    //print(excerpt);
     return Container(
       padding: EdgeInsets.only(
         bottom: 5,
       ),
-      child:  GestureDetector(
+      child: GestureDetector(
         onTap: () {
-          Navigator.of(context).pushNamed('/post-details', arguments: id);
-      },
+          Navigator.of(context).pushNamed('/post-details', arguments: post.id);
+        },
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -44,12 +41,12 @@ class PostSummary extends StatelessWidget {
                       ],
                     ),
                     child: Hero(
-                        tag: id,
+                        tag: post.id,
                         child: FadeInImage(
-                          placeholder:
-                          AssetImage('assets/images/ta-placeholder-master.png'),
+                          placeholder: AssetImage(
+                              'assets/images/ta-placeholder-master.png'),
                           image: NetworkImage(
-                            imageUrl,
+                            post.imageUrl,
                           ),
                           fit: BoxFit.cover,
                           height: 150,
@@ -69,20 +66,36 @@ class PostSummary extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(title, style: TextStyle(
-                        fontWeight: FontWeight.bold
-                    ),),
+                    Text(
+                      post.title,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                     SizedBox(
                       height: 5,
                     ),
-                    Text('$excerpt...'),
+                    Text('${post.excerpt}...'),
                   ],
                 ),
               ),
             ),
             Expanded(
               flex: 3,
-              child: Text(DateFormat('MM/dd/yy').format(date)),
+              child: Column(
+                children: <Widget>[
+                  Text(
+                    DateFormat('MM/dd/yy').format(post.created),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  OutlinedButton(
+                    child: Icon(Icons.favorite),
+                    onPressed: (){},
+                  ),
+                ],
+              ),
             ),
           ],
         ),

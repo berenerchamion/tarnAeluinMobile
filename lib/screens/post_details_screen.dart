@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -12,15 +13,15 @@ class PostDetailsScreen extends StatefulWidget {
 }
 
 class _PostDetailsScreenState extends State<PostDetailsScreen> {
-
+  final Completer<WebViewController> _controller =
+      Completer<WebViewController>();
   @override
-  void initState(){
+  void initState() {
     super.initState();
 
     if (Platform.isAndroid) {
       WebView.platform = SurfaceAndroidWebView();
-    }
-    else if (Platform.isIOS) {
+    } else if (Platform.isIOS) {
       WebView.platform = CupertinoWebView();
     }
   }
@@ -36,9 +37,9 @@ class _PostDetailsScreenState extends State<PostDetailsScreen> {
         title: Text('Post Details for $postId'),
       ),
       body: Column(
-        children: <Widget> [
+        children: <Widget>[
           Expanded(
-            child:  WebView(
+            child: WebView(
               initialUrl: postUrl,
               javascriptMode: JavascriptMode.unrestricted,
             ),

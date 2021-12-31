@@ -4,7 +4,6 @@ import '../providers/posts_provider.dart';
 import '../providers/post_provider.dart';
 import './post_summary.dart';
 
-
 class PostList extends StatelessWidget {
   const PostList({Key? key}) : super(key: key);
 
@@ -14,14 +13,13 @@ class PostList extends StatelessWidget {
     final List<Post> posts = postsData.posts;
 
     return Scaffold(
-      body: ListView.builder(
-            padding: const EdgeInsets.all(8),
-            itemCount: posts.length,
-            itemBuilder: (BuildContext context, int index) {
-              return PostSummary(
-                posts[index]
-              );
-            })
-    );
+        body: ListView.builder(
+      padding: const EdgeInsets.all(8),
+      itemCount: posts.length,
+      itemBuilder: (ctx, index) => ChangeNotifierProvider.value(
+        value: posts[index],
+        child: PostSummary(posts[index]),
+      ),
+    ));
   }
 }

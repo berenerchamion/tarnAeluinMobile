@@ -16,6 +16,7 @@ class Post with ChangeNotifier {
     required this.created,
     required this.updated,
     required this.imageUrl,
+    //todo we will need to handle setting isFavorite from the saved condition
   });
 
   void _setFavoriteStatus(bool newValue) {

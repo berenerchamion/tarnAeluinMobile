@@ -8,53 +8,40 @@ import '../providers/post_provider.dart';
 class PostSummary extends StatelessWidget {
   final Post post;
 
-  const PostSummary(this.post,
-      {Key? key})
-      : super(key: key);
+  const PostSummary(this.post, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<Post> (
+    return Consumer<Post>(
       builder: (ctx, post, child) => Container(
         padding: EdgeInsets.only(
           bottom: 5,
         ),
         child: GestureDetector(
           onTap: () {
-            Navigator.of(context).pushNamed('/post-details', arguments: post.id);
+            Navigator.of(context)
+                .pushNamed('/post-details', arguments: post.id);
           },
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
                 flex: 5,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(5),
-                  clipBehavior: Clip.antiAlias,
-                  child: GridTile(
-                    child: Container(
-                      padding: EdgeInsets.all(5.0),
-                      decoration: BoxDecoration(
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Colors.white54,
-                            blurRadius: 3.0,
-                            spreadRadius: 4.0,
-                          ),
-                        ],
+                child: Card(
+                  elevation: 5.0,
+                  shadowColor: Colors.black,
+                  margin: EdgeInsets.all(5.0),
+                  child: Hero(
+                    tag: post.id,
+                    child: FadeInImage(
+                      placeholder: AssetImage(
+                          'assets/images/ta-placeholder-master.png'),
+                      image: NetworkImage(
+                        post.imageUrl,
                       ),
-                      child: Hero(
-                          tag: post.id,
-                          child: FadeInImage(
-                            placeholder: AssetImage(
-                                'assets/images/ta-placeholder-master.png'),
-                            image: NetworkImage(
-                              post.imageUrl,
-                            ),
-                            fit: BoxFit.cover,
-                            height: 150,
-                            width: 150,
-                          )),
+                      fit: BoxFit.cover,
+                      height: 125,
+                      width: 150,
                     ),
                   ),
                 ),
@@ -94,8 +81,10 @@ class PostSummary extends StatelessWidget {
                       height: 20,
                     ),
                     OutlinedButton(
-                      child: post.isFavorite? Icon(Icons.favorite) : Icon(Icons.favorite_border),
-                      onPressed: (){
+                      child: post.isFavorite
+                          ? Icon(Icons.favorite)
+                          : Icon(Icons.favorite_border),
+                      onPressed: () {
                         post.toggleFavoriteStatus();
                       },
                     ),

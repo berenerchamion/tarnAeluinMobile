@@ -50,7 +50,7 @@ flutter_icons:
   ios: true
   remove_alpha_ios: true
   image_path: "dev_assets/taIcon.png"
-  adaptive_icon_ background: "#191919"
+  adaptive_icon_ background: "#d6c9b7"
   adaptive_icon_foreground: "dev_assets/taAdaptiveIcon.png"
 
   # The "flutter_lints" package below contains a set of recommended lints to

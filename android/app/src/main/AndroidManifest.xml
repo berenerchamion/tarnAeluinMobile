@@ -1,7 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.tarn_aeluin_mobile">
    <application
-        android:label="tarn_aeluin_mobile"
+        android:label="Tarn Aeluin Mobile"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

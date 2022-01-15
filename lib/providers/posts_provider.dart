@@ -7,7 +7,7 @@ import 'dart:convert';
 import './post_provider.dart';
 
 class Posts with ChangeNotifier {
-  final String _baseUrl = dotenv.get('TARN_AELUIN_BASE_URL');
+  final String _baseUrl = dotenv.get('WORDPRESS_BASE_URL');
   List<Post> _posts = [];
 
   Posts(this._posts);

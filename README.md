@@ -10,5 +10,5 @@ to get content flowing into an app in a nice way.
 ## Getting Started
 
 This is a pretty straight forward build. Clone the code and do a pub get. You'll need to configure
-an .env file with the parameter TARN_AELUIN_BASE_URL that should be set to the base url of a Wordpress blog
-that you would like to intergrate with.
+an .env file with the parameter WORDPRESS_BASE_URL that should be set to the base url of a Wordpress blog
+that you would like to integrate with.
